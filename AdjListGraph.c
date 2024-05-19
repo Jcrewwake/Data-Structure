@@ -37,7 +37,7 @@ int main()
     }
     output(&G);
 
-    printf("%d", freeALGraph(&G));
+    printf("freeALGraph:%d\n", freeALGraph(&G));
     return 0;
 }
 
@@ -88,14 +88,9 @@ int input(ALGraph* G)
         ArcNode* new_Node = (ArcNode*)malloc(sizeof(ArcNode));
         new_Node->adjvex = col;
         new_Node->info = a;
-        new_Node->nextarc = NULL;
         ArcNode*p = G->vertices[row].firstarc;
-        if (p==NULL){
-            G->vertices[row].firstarc = new_Node;
-        }else{
-            new_Node->nextarc = p;
-            G->vertices[row].firstarc = new_Node;
-        }
+        new_Node->nextarc = p;
+        G->vertices[row].firstarc = new_Node;
         printf("input arcs value: %d", a);
     }
     return 0;
