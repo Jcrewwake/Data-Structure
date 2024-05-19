@@ -1,45 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-#define MaxInt  32767
-#define MVNum   100
-#define DEBUG
-typedef char VerTexType;
-typedef int OtherInfo;
-
-typedef struct ArcNode{
-    int adjvex;
-    struct ArcNode * nextarc;
-    OtherInfo info;
-}ArcNode;
-
-typedef struct VNode{
-    VerTexType  data;
-    ArcNode*    firstarc;
-}VNode, AdjList[MVNum];
-
-typedef struct
-{
-    AdjList vertices;
-    int vexnum, arcnum;
-}ALGraph;
-
-
-int LocateVex(ALGraph* G, VerTexType v);
-int input(ALGraph* G);
-void output(ALGraph* G);
-int freeALGraph(ALGraph* G);
-int main()
-{
-    ALGraph G;
-    if(input(&G) == -1){
-        printf("Error Not have this vetex Error\n");
-    }
-    output(&G);
-
-    printf("freeALGraph:%d\n", freeALGraph(&G));
-    return 0;
-}
+#include "AdjListGraph.h"
 
 int input(ALGraph* G)
 {
@@ -91,7 +52,7 @@ int input(ALGraph* G)
         ArcNode*p = G->vertices[row].firstarc;
         new_Node->nextarc = p;
         G->vertices[row].firstarc = new_Node;
-        printf("input arcs value: %d", a);
+        printf("input arcs value: %d\n", a);
     }
     return 0;
 }
@@ -114,7 +75,6 @@ void output(ALGraph* G)
         }
     }
 }
-
 
 int freeALGraph(ALGraph* G)
 {
