@@ -102,3 +102,20 @@ int LocateVex(ALGraph* G, VerTexType v)
         index = -1;
     return index;
 }
+
+
+int visible[MVNum];
+void DFS(ALGraph* G, int v)
+{
+    printf("vertex[%d]:%c\n", v, G->vertices[v].data);
+    visible[v] = 1;
+    ArcNode* p = G->vertices[v].firstarc;
+    while(p)
+    {
+        if(visible[p->adjvex] == 0)
+        {
+            DFS(G, p->adjvex);
+        }
+        p = p->nextarc;
+    }
+}

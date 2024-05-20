@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "AdjListGraph.h"
+#include "./Graph/List/AdjListGraph.h"
 
 int main()
 {
@@ -7,8 +7,8 @@ int main()
     if(input(&G) == -1){
         printf("Error Not have this vetex Error\n");
     }
-    output(&G);
-
-    printf("freeALGraph:%d\n", freeALGraph(&G));
+    DFS(&G, 0);
+    // output(&G);
+    printf("%d\n",freeALGraph(&G));
     return 0;
 }

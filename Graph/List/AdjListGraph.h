@@ -32,5 +32,6 @@ int input(ALGraph* G);
 void output(ALGraph* G);
 int freeALGraph(ALGraph* G);
 
+void DFS(ALGraph* G, int v);
 
 #endif

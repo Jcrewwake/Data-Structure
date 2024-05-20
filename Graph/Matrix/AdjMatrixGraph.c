@@ -1,35 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-#define MaxInt  32767
-#define MVNum   100
-#define DEBUG
-#define Test
-typedef char VerTexType;
-typedef int ArcType;
-
-typedef struct{
-    VerTexType  vexs[MVNum];
-    ArcType     arcs[MVNum][MVNum];
-    int vexnum, arcnum;
-}AMGraph;
-
-int LocateVex(AMGraph* G, VerTexType v);
-int input(AMGraph* G);
-void output(AMGraph* G);
-
-int main()
-{
-    AMGraph* G = (AMGraph*)malloc(sizeof(AMGraph));
-    if(input(G) == -1){
-        printf("Error Not have this vetex Error\n");
-    }
-    output(G);
-
-    free(G);
-    G = NULL;
-    return 0;
-}
+#include "AdjMatrixGraph.h"
 
 int input(AMGraph* G)
 {
@@ -80,7 +51,7 @@ int input(AMGraph* G)
         getchar();  //use eat '\n'
         G->arcs[row][col] = a;
         G->arcs[col][row] = G->arcs[row][col];
-        printf("input arcs value: %d", G->arcs[row][col]);
+        printf("input arcs value: %d\n", G->arcs[row][col]);
     }
     return 0;
 }
@@ -110,4 +81,15 @@ int LocateVex(AMGraph* G, VerTexType v)
     if (index == G->vexnum)
         index = -1;
     return index;
+}
+
+
+int visible[MVNum];
+void DFS(AMGraph G, int v)
+{
+    printf("Vertex[%d]: %c\n", v, G.vexs[v]);
+    visible[v] = 1;
+    for (int i = 0; i < G.vexnum; i++)
+        if (G.arcs[v][i] != MaxInt && visible[i] != 1)
+            DFS(G, i);
 }
