@@ -2,9 +2,11 @@
 #define __QUEUE_H__
 
 #define MaxNode 100
+#define TRUE    1
+#define FALSE   0
 #define FULL    5
 #define OK      1
-#define EMPTY    0
+#define EMPTY   0
 
 typedef char QueueNode;
 typedef unsigned char PointNum;
@@ -21,7 +23,7 @@ void initQueue(Queue* Q);
 Status EnQueue(Queue* const Q, const QueueNode* const Node);
 Status OutQueue(Queue* const Q, QueueNode* const OutNode);
 Status GetTop(const Queue* const Q, QueueNode* const FirstNode);
-
+Status IsEmpty(const Queue* const Q);
 
 
 #endif

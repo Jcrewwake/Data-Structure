@@ -36,3 +36,9 @@ Status GetTop(const Queue* const Q, QueueNode* const FirstNode)
     *FirstNode = Q->queueList[(Q->first + 1) % MaxNode];
     return OK;
 }
+
+Status IsEmpty(const Queue* const Q){
+    if (Q->first == Q->rear)
+        return TRUE;
+    return FALSE;
+}
