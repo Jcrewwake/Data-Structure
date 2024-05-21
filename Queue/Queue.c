@@ -1,15 +1,5 @@
 #include <stdio.h>
-
-#define MaxNode 100
-#define FULL    5
-
-typedef char QueueNode;
-
-typedef struct Queue
-{
-    QueueNode queueList[MaxNode];
-    unsigned char first, rear;
-}Queue;
+#include "Queue.h"
 
 void initQueue(Queue* Q)
 {
@@ -17,11 +7,32 @@ void initQueue(Queue* Q)
     Q->rear = 0;
 }
 
-unsigned char EnQueue(Queue* Q, QueueNode Node)
+Status EnQueue(Queue* const Q, const QueueNode* const Node)
 {
-    if ((Q->rear + 1) % MaxNode == Q->first){
+    PointNum next_rear = (Q->rear + 1) % MaxNode;
+    if (next_rear == Q->first){
         return FULL;
     }
-    Q->queueList[Q->rear] = Node;
-    Q->rear++;
+    Q->rear = next_rear;
+    Q->queueList[Q->rear] = *Node;
+    return OK;
+}
+
+Status OutQueue(Queue* const Q, QueueNode* const OutNode)
+{
+    if (Q->rear == Q->first)
+        return EMPTY;
+    
+    PointNum next_first = (Q->first + 1) % MaxNode;
+    *OutNode = Q->queueList[next_first];
+    Q->first = next_first;
+    return OK;
+}
+
+Status GetTop(const Queue* const Q, QueueNode* const FirstNode)
+{
+    if (Q->rear == Q->first)
+        return EMPTY;
+    *FirstNode = Q->queueList[(Q->first + 1) % MaxNode];
+    return OK;
 }
