@@ -1,6 +1,8 @@
 #ifndef __QUEUE_H__
 #define __QUEUE_H__
 
+#include "../Graph/List/AdjListGraph.h"
+
 #define MaxNode 100
 #define TRUE    1
 #define FALSE   0
@@ -8,7 +10,7 @@
 #define OK      1
 #define EMPTY   0
 
-typedef char QueueNode;
+typedef VerTexType QueueNode;
 typedef unsigned char PointNum;
 typedef unsigned char Status;
 
